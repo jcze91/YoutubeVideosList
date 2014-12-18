@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Tubee</string>
+  <string name="hello_world">Hello world!</string>
+  <string name="action_share">Partager</string>
+  <string name="action_about">À propos</string>
+  <string name="title_activity_about">À propos de Tubee</string>
+  <string name="dev_by">Développée par :</string>
+
+</resources>

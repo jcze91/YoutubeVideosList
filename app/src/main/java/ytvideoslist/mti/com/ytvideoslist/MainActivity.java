@@ -1,5 +1,6 @@
 package ytvideoslist.mti.com.ytvideoslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -47,12 +48,18 @@ public class MainActivity extends ActionBarActivity {
         return true;
       case R.id.action_about:
         Log.d(TAG, "About screen");
+        navigateToAbout();
         return true;
       default:
         break;
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  private void navigateToAbout() {
+    Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
   }
 
   /**
