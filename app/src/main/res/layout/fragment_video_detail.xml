@@ -2,16 +2,18 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="ytvideoslist.mti.com.ytvideoslist.VideoDetailFragment">
+             android:paddingLeft="@dimen/activity_horizontal_margin"
+             android:paddingRight="@dimen/activity_horizontal_margin"
+             android:background="@color/grey_200"
+             tools:context="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment">
 
   <TextView
     android:id="@+id/detailsText"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal|center_vertical"
-    android:layout_marginTop="20dip"
     android:text="@string/hello_world"
     android:textAppearance="?android:attr/textAppearanceLarge"
-    android:textSize="30dip"/>
+    android:textSize="30sp"/>
 
 </FrameLayout>
