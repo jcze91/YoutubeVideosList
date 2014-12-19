@@ -65,6 +65,8 @@ public class MainActivity extends ActionBarActivity {
     startActivity(intent);
   }
 
+  // TODO Maybe move the fragment out to a dedicated class/file
+
   /**
    * The fragment containing the video list.
    */
