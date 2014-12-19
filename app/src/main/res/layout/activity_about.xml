@@ -31,9 +31,10 @@
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"
       android:layout_below="@+id/appLogo"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="20dp"
       android:textStyle="bold"
-      android:id="@+id/appName"/>
+      android:id="@+id/appName"
+      android:textSize="28dp"/>
 
     <TextView
       android:layout_width="wrap_content"
