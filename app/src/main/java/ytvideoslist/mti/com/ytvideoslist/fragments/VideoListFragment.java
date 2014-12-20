@@ -13,16 +13,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import it.gmariotti.cardslib.library.cards.material.MaterialLargeImageCard;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.view.CardListView;
+import ytvideoslist.mti.com.ytvideoslist.HandleJSON;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class VideoListFragment extends Fragment {
   private OnItemSelectedListener listener;
+  private ArrayList<Video> videoList;
+
+
+  public void setVideoList(ArrayList<Video> videoList) {
+      this.videoList = videoList;
+  }
 
   public VideoListFragment() {
   }
@@ -41,11 +49,11 @@ public class VideoListFragment extends Fragment {
 
     ArrayList<Card> cards = new ArrayList<>();
 
-    ArrayList<Video> videolist = new ArrayList<>();
+    //ArrayList<Video> videolist = new ArrayList<>();
 
     /* I'm ugly and I know it
       TODO Fetch data from the API */
-    try {
+    /*try {
       videolist.add(new Video("Project Ara Prototype shown at Google I/O 2014",
           "qualitypointtech",
           "Paul Eremenko, the head of Project Ara showed the prototype of Project Ara at Google I/O 2014. Though the phone failed to fully load, Audience cheered on see.",
@@ -96,10 +104,19 @@ public class VideoListFragment extends Fragment {
     } catch (ParseException e) {
       Log.d("PARSE ERROR", e.getMessage());
       e.printStackTrace();
-    }
+    }*/
 
-    for (int i = 0; i < videolist.size(); ++i) {
-      Video current = videolist.get(i);
+      try {
+        HandleJSON hj = new HandleJSON("http://tutos-android.com/projet/youtube_api_search.json");
+        hj.execute();
+        this.videoList = hj.get();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+
+
+      for (int i = 0; i < videoList.size(); ++i) {
+      Video current = videoList.get(i);
       MaterialLargeImageCard card =
           MaterialLargeImageCard.with(getActivity())
               .setTextOverImage("")

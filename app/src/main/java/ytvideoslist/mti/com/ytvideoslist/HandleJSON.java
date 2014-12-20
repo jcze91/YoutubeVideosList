@@ -2,35 +2,50 @@ package ytvideoslist.mti.com.ytvideoslist;
 
 import android.os.AsyncTask;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
+import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 /**
  * Created by Yayap on 19/12/14.
  */
-public class HandleJSON extends AsyncTask<Void, Void, Void>{
+public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>>{
 
     private String urlString;
-    private List<Video> listVideos;
+    private ArrayList<Video> videoList;
 
-    public HandleJSON (String url)
+public HandleJSON (String url)
     {
         this.urlString = url;
-        this.listVideos = new ArrayList<Video>();
+        this.videoList = new ArrayList<Video>();
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected ArrayList<Video> doInBackground(Void... params) {
         try {
-            JSONObject reader = new JSONObject(urlString);
 
+            // http client
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpEntity httpEntity = null;
+            HttpResponse httpResponse = null;
+            HttpGet httpGet = new HttpGet(this.urlString);
+            httpResponse = httpClient.execute(httpGet);
+            httpEntity = httpResponse.getEntity();
+            String response = EntityUtils.toString(httpEntity);
+
+
+            JSONObject reader = new JSONObject(response);
             JSONArray items = reader.getJSONArray("items");
 
             for (int i = 0; i < items.length(); ++i)
@@ -44,10 +59,10 @@ public class HandleJSON extends AsyncTask<Void, Void, Void>{
                 String title = snippet.getString("title");
                 String description = snippet.getString("description");
 
-                JSONObject thumbnails = item.getJSONObject("thumbnails");
-                String smallTumbnail = thumbnails.getString("default");
-                String mediumThumbnail = thumbnails.getString("medium");
-                String largeTumbnail = thumbnails.getString("high");
+                JSONObject thumbnails = snippet.getJSONObject("thumbnails");
+                String smallTumbnail = thumbnails.getJSONObject("default").getString("url");
+                String mediumThumbnail = thumbnails.getJSONObject("medium").getString("url");
+                String largeTumbnail = thumbnails.getJSONObject("high").getString("url");
 
                 Video video = new Video(title,
                         channel,
@@ -57,13 +72,13 @@ public class HandleJSON extends AsyncTask<Void, Void, Void>{
                         mediumThumbnail,
                         largeTumbnail);
 
-                this.listVideos.add(video);
+                this.videoList.add(video);
             }
 
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-        return null;
+        return videoList;
     }
 }
