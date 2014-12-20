@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import ytvideoslist.mti.com.ytvideoslist.HandleJSON;
+import ytvideoslist.mti.com.ytvideoslist.utils.HandleJSON;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.CardAdapter;

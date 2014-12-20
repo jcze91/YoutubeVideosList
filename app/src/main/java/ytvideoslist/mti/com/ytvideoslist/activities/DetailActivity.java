@@ -11,11 +11,11 @@ import android.view.WindowManager;
 
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
+import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 
 public class DetailActivity extends ActionBarActivity {
   private static final String TAG = "DetailActivity";
-  public static final String EXTRA_URL = "url";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,10 @@ public class DetailActivity extends ActionBarActivity {
 
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
-      String url = extras.getString(EXTRA_URL);
+      Video video = extras.getParcelable("video");
       VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
           .findFragmentById(R.id.detailFragment);
-      detailFragment.setText(url);
+      detailFragment.setText(video.getTitle());
     }
   }
 

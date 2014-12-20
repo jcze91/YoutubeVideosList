@@ -41,13 +41,12 @@ public class VideoViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
   @Override
   public void onClick(View v) {
-    if (v instanceof ImageView || v.getId() == R.id.detailsAction) {
-      listener.onThumbnail(getPosition());
-    } else if (v.getId() == R.id.channelTitle) {
+    if (v.getId() == R.id.channelTitle) {
       listener.onChannel(getPosition());
     } else if (v.getId() == R.id.shareAction) {
       listener.onShare(getPosition());
     }
+    listener.onThumbnail(getPosition());
   }
 
   public static interface IVideoViewHolderClicks {

@@ -1,8 +1,14 @@
 package ytvideoslist.mti.com.ytvideoslist.models;
 
-import java.util.Date;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Video {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class Video implements Parcelable {
   private String title;
   private String channel;
   private String description;
@@ -23,59 +29,79 @@ public class Video {
     this.largeThumbnail = largeThumbnail;
   }
 
-  public String getTitle() {
-    return title;
+  public Video(Parcel in) {
+    this.title = in.readString();
+    this.channel = in.readString();
+    this.description = in.readString();
+    try {
+      this.published = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(in.readString());
+    } catch (ParseException e) {
+      // TODO Properly handle this
+      e.printStackTrace();
+    }
+    this.smallThumbnail = in.readString();
+    this.mediumThumbnail = in.readString();
+    this.largeThumbnail = in.readString();
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public String getTitle() {
+    return title;
   }
 
   public String getChannel() {
     return channel;
   }
 
-  public void setChannel(String channel) {
-    this.channel = channel;
-  }
-
   public String getDescription() {
     return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
 
   public Date getPublished() {
     return published;
   }
 
-  public void setPublished(Date published) {
-    this.published = published;
-  }
-
   public String getSmallThumbnail() {
     return smallThumbnail;
-  }
-
-  public void setSmallThumbnail(String smallThumbnail) {
-    this.smallThumbnail = smallThumbnail;
   }
 
   public String getMediumThumbnail() {
     return mediumThumbnail;
   }
 
-  public void setMediumThumbnail(String mediumThumbnail) {
-    this.mediumThumbnail = mediumThumbnail;
-  }
-
   public String getLargeThumbnail() {
     return largeThumbnail;
   }
 
-  public void setLargeThumbnail(String largeThumbnail) {
-    this.largeThumbnail = largeThumbnail;
+  private String formatDate() {
+    return new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss").format(getPublished());
   }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(getTitle());
+    dest.writeString(getChannel());
+    dest.writeString(getDescription());
+    dest.writeString(formatDate());
+    dest.writeString(getSmallThumbnail());
+    dest.writeString(getMediumThumbnail());
+    dest.writeString(getLargeThumbnail());
+  }
+
+  public static final Parcelable.Creator<Video> CREATOR = new Parcelable.Creator<Video>() {
+
+    @Override
+    public Video createFromParcel(Parcel source) {
+      return new Video(source);
+    }
+
+    @Override
+    public Video[] newArray(int size) {
+      return new Video[size];
+    }
+  };
 }

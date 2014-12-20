@@ -8,12 +8,10 @@
               android:background="@color/teal_400">
 
   <FrameLayout
-    android:background="@android:color/background_light"
+    android:background="@color/grey_200"
     android:id="@+id/container"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:layout_width="340dp"
+    android:layout_width="380dp"
     android:layout_height="match_parent">
   </FrameLayout>
 
