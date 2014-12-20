@@ -1,4 +1,4 @@
-package ytvideoslist.mti.com.ytvideoslist;
+package ytvideoslist.mti.com.ytvideoslist.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import ytvideoslist.mti.com.ytvideoslist.R;
 
 public class VideoDetailFragment extends Fragment {
   @Override

@@ -4,7 +4,7 @@
              android:layout_height="match_parent"
              tools:ignore="MergeRootFrame"
              android:background="@color/teal_400"
-             tools:context="ytvideoslist.mti.com.ytvideoslist.AboutActivity">
+             tools:context="ytvideoslist.mti.com.ytvideoslist.activities.AboutActivity">
 
   <RelativeLayout
     android:background="@android:color/background_light"
@@ -32,9 +32,9 @@
       android:layout_centerHorizontal="true"
       android:layout_below="@+id/appLogo"
       android:layout_marginTop="20dp"
-      android:textStyle="bold"
       android:id="@+id/appName"
-      android:textSize="28dp"/>
+      android:textSize="28dp"
+      android:fontFamily="sans-serif-thin"/>
 
     <TextView
       android:layout_width="wrap_content"
