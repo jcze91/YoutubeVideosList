@@ -1,6 +1,7 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,16 +14,24 @@ import android.view.WindowManager;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
+import ytvideoslist.mti.com.ytvideoslist.models.Video;
+import ytvideoslist.mti.com.ytvideoslist.utils.VideoViewHolder;
 
 
-public class MainActivity extends ActionBarActivity implements VideoListFragment.OnItemSelectedListener {
+public class MainActivity extends ActionBarActivity implements VideoViewHolder.IVideoViewHolderClicks {
 
   // TODO Remove possible useless debug logs prior to submission
   private static final String TAG = "MainActivity";
+  public static Typeface ROBOTO_SLAB;
+  // This is to follow Material Design guidelines even on pre-Lollipop devices
+  public static Typeface ROBOTO_MEDIUM;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    ROBOTO_SLAB = Typeface.createFromAsset(this.getAssets(), "fonts/RobotoSlab-Regular.ttf");
+    ROBOTO_MEDIUM = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Medium.ttf");
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       Window window = this.getWindow();
@@ -70,16 +79,32 @@ public class MainActivity extends ActionBarActivity implements VideoListFragment
   }
 
   @Override
-  public void onItemSelected(String link) {
+  public void onThumbnail(int position) {
     VideoDetailFragment fragment = (VideoDetailFragment) getFragmentManager()
         .findFragmentById(R.id.detailFragment);
+    Video current = VideoListFragment.videoList.get(position);
+
     if (fragment != null && fragment.isInLayout()) {
-      fragment.setText(link);
+      fragment.setText(current.getTitle());
     } else {
       Intent intent = new Intent(getApplicationContext(),
           DetailActivity.class);
-      intent.putExtra(DetailActivity.EXTRA_URL, link);
+      intent.putExtra(DetailActivity.EXTRA_URL, current.getTitle());
       startActivity(intent);
     }
+  }
+
+  @Override
+  public void onChannel(int position) {
+    StringBuilder sb = new StringBuilder();
+    Video current = VideoListFragment.videoList.get(position);
+    Log.d(TAG, sb.append("Go to ").append(current.getChannel()).append("channel's").toString());
+  }
+
+  @Override
+  public void onShare(int position) {
+    StringBuilder sb = new StringBuilder();
+    Video current = VideoListFragment.videoList.get(position);
+    Log.d(TAG, sb.append("Sharing ").append(current.getTitle()).toString());
   }
 }
