@@ -2,12 +2,12 @@
 <resources>
 
   <string name="app_name">Tubee</string>
-  <!-- TODO Remove Hello world! -->
-  <string name="hello_world">Hello world!</string>
   <string name="action_share">Partager</string>
   <string name="action_details">Détails</string>
   <string name="action_about">À propos</string>
   <string name="title_activity_about">À propos de Tubee</string>
   <string name="dev_by">Développée par :</string>
+  <string name="onDate">le</string>
+  <string name="thmbDesc">Miniature de la vidéo</string>
 
 </resources>

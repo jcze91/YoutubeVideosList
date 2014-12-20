@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
@@ -41,7 +42,7 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
       httpEntity = httpResponse.getEntity();
       String response = EntityUtils.toString(httpEntity);
 
-      StringBuilder sb = new StringBuilder();
+      StringBuilder sb;
 
       JSONObject reader = new JSONObject(response);
       JSONArray items = reader.getJSONArray("items");
@@ -50,6 +51,8 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
         JSONObject item = items.getJSONObject(i);
 
         String id = item.getJSONObject("id").getString("videoId");
+
+        sb = new StringBuilder();
         String url = sb.append("http://youtu.be/").append(id).toString();
 
         JSONObject snippet = item.getJSONObject("snippet");
@@ -63,10 +66,12 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
         String mediumThumbnail = thumbnails.getJSONObject("medium").getString("url");
         String largeTumbnail = thumbnails.getJSONObject("high").getString("url");
 
+        Date published = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date);
+
         Video video = new Video(title,
             channel,
             description,
-            new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date),
+            new SimpleDateFormat("yyyy/MM/dd - hh:mm").format(published),
             url,
             smallTumbnail,
             mediumThumbnail,

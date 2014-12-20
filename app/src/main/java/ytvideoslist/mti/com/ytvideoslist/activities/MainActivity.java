@@ -85,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
     Video current = VideoListFragment.videoList.get(position);
 
     if (fragment != null && fragment.isInLayout()) {
-      fragment.setText(current.getTitle());
+      //fragment.setText(current.getTitle());
     } else {
       Intent intent = new Intent(getApplicationContext(),
           DetailActivity.class);

@@ -21,14 +21,6 @@ public class CardAdapter extends RecyclerView.Adapter<VideoViewHolder> {
     this.videoList = videoList;
   }
 
-  public ArrayList<Video> getVideoList() {
-    return videoList;
-  }
-
-  public void setVideoList(ArrayList<Video> videoList) {
-    this.videoList = videoList;
-  }
-
   @Override
   public VideoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View itemView = LayoutInflater.

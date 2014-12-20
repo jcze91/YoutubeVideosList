@@ -3,23 +3,18 @@ package ytvideoslist.mti.com.ytvideoslist.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 public class Video implements Parcelable {
   private String title;
   private String channel;
   private String description;
-  private Date published;
+  private String published;
   private String url;
   private String smallThumbnail;
   private String mediumThumbnail;
   private String largeThumbnail;
 
   public Video(String title, String channel,
-               String description, Date published, String url,
+               String description, String published, String url,
                String smallThumbnail, String mediumThumbnail, String largeThumbnail) {
     this.title = title;
     this.channel = channel;
@@ -35,12 +30,7 @@ public class Video implements Parcelable {
     this.title = in.readString();
     this.channel = in.readString();
     this.description = in.readString();
-    try {
-      this.published = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(in.readString());
-    } catch (ParseException e) {
-      // TODO Properly handle this
-      e.printStackTrace();
-    }
+    this.published = in.readString();
     this.url = in.readString();
     this.smallThumbnail = in.readString();
     this.mediumThumbnail = in.readString();
@@ -59,7 +49,7 @@ public class Video implements Parcelable {
     return description;
   }
 
-  public Date getPublished() {
+  public String getPublished() {
     return published;
   }
 
@@ -79,10 +69,6 @@ public class Video implements Parcelable {
     return largeThumbnail;
   }
 
-  private String formatDate() {
-    return new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss").format(getPublished());
-  }
-
   @Override
   public int describeContents() {
     return 0;
@@ -93,7 +79,7 @@ public class Video implements Parcelable {
     dest.writeString(getTitle());
     dest.writeString(getChannel());
     dest.writeString(getDescription());
-    dest.writeString(formatDate());
+    dest.writeString(getPublished());
     dest.writeString(getUrl());
     dest.writeString(getSmallThumbnail());
     dest.writeString(getMediumThumbnail());

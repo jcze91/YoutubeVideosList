@@ -40,13 +40,16 @@ public class DetailActivity extends ActionBarActivity {
 
       VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
           .findFragmentById(R.id.detailFragment);
-      detailFragment.setText(video.getTitle());
+      detailFragment.setTitle(video.getTitle());
+      detailFragment.setImage(video.getLargeThumbnail());
+      detailFragment.setChannel(video.getChannel());
+      detailFragment.setDate(video.getPublished());
+      detailFragment.setDescription(video.getDescription());
     }
   }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_detail, menu);
     return true;
   }
@@ -71,7 +74,7 @@ public class DetailActivity extends ActionBarActivity {
   }
 
   public void watchVideo(View view) {
-    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + "v_UyVmITiYQ"));
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getUrl()));
     this.startActivity(intent);
   }
 }
