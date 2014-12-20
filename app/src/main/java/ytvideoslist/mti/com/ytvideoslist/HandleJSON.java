@@ -5,8 +5,12 @@ import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 /**
  * Created by Yayap on 19/12/14.
@@ -27,34 +31,31 @@ public class HandleJSON extends AsyncTask<Void, Void, Void>{
         try {
             JSONObject reader = new JSONObject(urlString);
 
-            //JSONObject result = reader.getJSONObject("resultat");
-
             JSONArray items = reader.getJSONArray("items");
 
             for (int i = 0; i < items.length(); ++i)
             {
-                Video video = new Video();
                 JSONObject item = items.getJSONObject(i);
 
-                video.setTag(item.getString("etag"));
-
-                JSONObject id = item.getJSONObject("id");
-                video.setIdKind(id.getString("kind"));
-                video.setId(id.getString("videoId"));
 
                 JSONObject snippet = item.getJSONObject("snippet");
-                video.setPublishedAt(snippet.getString("publishedAt"));
-                video.setChannelId(snippet.getString("channelId"));
-                video.setChanelTitle(snippet.getString("channelTitle"));
-                video.setTitle(snippet.getString("title"));
-                video.setDescription(snippet.getString("description"));
+                String date = snippet.getString("publishedAt");
+                String channel = snippet.getString("channelTitle");
+                String title = snippet.getString("title");
+                String description = snippet.getString("description");
 
                 JSONObject thumbnails = item.getJSONObject("thumbnails");
-                video.setThumbnailDefault(thumbnails.getString("default"));
-                video.setThumbnailMedium(thumbnails.getString("medium"));
-                video.setThumbnailHigh(thumbnails.getString("high"));
+                String smallTumbnail = thumbnails.getString("default");
+                String mediumThumbnail = thumbnails.getString("medium");
+                String largeTumbnail = thumbnails.getString("high");
 
-
+                Video video = new Video(title,
+                        channel,
+                        description,
+                        new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date),
+                        smallTumbnail,
+                        mediumThumbnail,
+                        largeTumbnail);
 
                 this.listVideos.add(video);
             }
