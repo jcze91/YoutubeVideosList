@@ -32,7 +32,6 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
   @Override
   protected ArrayList<Video> doInBackground(Void... params) {
     try {
-
       // http client
       DefaultHttpClient httpClient = new DefaultHttpClient();
       HttpEntity httpEntity = null;
@@ -42,6 +41,7 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
       httpEntity = httpResponse.getEntity();
       String response = EntityUtils.toString(httpEntity);
 
+      StringBuilder sb = new StringBuilder();
 
       JSONObject reader = new JSONObject(response);
       JSONArray items = reader.getJSONArray("items");
@@ -49,6 +49,8 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
       for (int i = 0; i < items.length(); ++i) {
         JSONObject item = items.getJSONObject(i);
 
+        String id = item.getJSONObject("id").getString("videoId");
+        String url = sb.append("http://youtu.be/").append(id).toString();
 
         JSONObject snippet = item.getJSONObject("snippet");
         String date = snippet.getString("publishedAt");
@@ -65,6 +67,7 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
             channel,
             description,
             new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date),
+            url,
             smallTumbnail,
             mediumThumbnail,
             largeTumbnail);

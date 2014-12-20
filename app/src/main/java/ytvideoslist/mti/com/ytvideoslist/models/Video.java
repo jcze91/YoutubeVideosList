@@ -13,17 +13,19 @@ public class Video implements Parcelable {
   private String channel;
   private String description;
   private Date published;
+  private String url;
   private String smallThumbnail;
   private String mediumThumbnail;
   private String largeThumbnail;
 
   public Video(String title, String channel,
-               String description, Date published,
+               String description, Date published, String url,
                String smallThumbnail, String mediumThumbnail, String largeThumbnail) {
     this.title = title;
     this.channel = channel;
     this.description = description;
     this.published = published;
+    this.url = url;
     this.smallThumbnail = smallThumbnail;
     this.mediumThumbnail = mediumThumbnail;
     this.largeThumbnail = largeThumbnail;
@@ -39,6 +41,7 @@ public class Video implements Parcelable {
       // TODO Properly handle this
       e.printStackTrace();
     }
+    this.url = in.readString();
     this.smallThumbnail = in.readString();
     this.mediumThumbnail = in.readString();
     this.largeThumbnail = in.readString();
@@ -58,6 +61,10 @@ public class Video implements Parcelable {
 
   public Date getPublished() {
     return published;
+  }
+
+  public String getUrl() {
+    return url;
   }
 
   public String getSmallThumbnail() {
@@ -87,6 +94,7 @@ public class Video implements Parcelable {
     dest.writeString(getChannel());
     dest.writeString(getDescription());
     dest.writeString(formatDate());
+    dest.writeString(getUrl());
     dest.writeString(getSmallThumbnail());
     dest.writeString(getMediumThumbnail());
     dest.writeString(getLargeThumbnail());

@@ -12,6 +12,12 @@
     android:layout_gravity="center_horizontal|center_vertical"
     android:text="@string/hello_world"
     android:textAppearance="?android:attr/textAppearanceLarge"
-    android:textSize="30sp"/>
+    android:textSize="30sp"
+      android:onClick=""/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:text="watch video"
+        android:onClick="watchVideo"/>
 
 </FrameLayout>

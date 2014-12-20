@@ -21,6 +21,7 @@
       android:layout_height="match_parent"
       class="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment"
       tools:layout="@layout/fragment_video_detail"/>
+
   </RelativeLayout>
 
 </FrameLayout>
