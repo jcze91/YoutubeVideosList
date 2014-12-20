@@ -1,13 +1,16 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ShareActionProvider;
 
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
@@ -16,8 +19,9 @@ import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
 public class DetailActivity extends ActionBarActivity {
   private static final String TAG = "DetailActivity";
   public static final String EXTRA_URL = "url";
+  private String url;
 
-  @Override
+    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
@@ -32,7 +36,7 @@ public class DetailActivity extends ActionBarActivity {
 
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
-      String url = extras.getString(EXTRA_URL);
+      url = extras.getString(EXTRA_URL);
       VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
           .findFragmentById(R.id.detailFragment);
       detailFragment.setText(url);
@@ -54,7 +58,12 @@ public class DetailActivity extends ActionBarActivity {
     switch (id) {
       case R.id.action_share:
         Log.d(TAG, "Sharing is caring");
-        return true;
+          Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+          sharingIntent.setType("text/plain");
+          String shareBody = "Hey check out this video : " + url;
+          sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+          startActivity(Intent.createChooser(sharingIntent, "Share via"));
+          return true;
       default:
         break;
     }
