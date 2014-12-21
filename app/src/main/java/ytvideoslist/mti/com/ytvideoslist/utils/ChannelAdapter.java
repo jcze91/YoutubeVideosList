@@ -29,7 +29,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelViewHolder> {
 
     this.ctx = parent.getContext();
 
-    return new ChannelViewHolder(itemView);
+    return new ChannelViewHolder(itemView, (ChannelViewHolder.IChannelViewHolderClicks) this.ctx);
   }
 
   @Override

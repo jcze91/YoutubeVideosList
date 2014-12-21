@@ -17,8 +17,9 @@ import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.ChannelAdapter;
+import ytvideoslist.mti.com.ytvideoslist.utils.ChannelViewHolder;
 
-public class ChannelActivity extends ActionBarActivity {
+public class ChannelActivity extends ActionBarActivity implements ChannelViewHolder.IChannelViewHolderClicks {
   private ArrayList<Video> videoList;
 
   @Override
@@ -78,6 +79,15 @@ public class ChannelActivity extends ActionBarActivity {
 
   private void navigateToAbout() {
     Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
+  }
+
+  @Override
+  public void onItem(int position) {
+    Video current = videoList.get(position);
+
+    Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+    intent.putExtra("video", current);
     startActivity(intent);
   }
 }
