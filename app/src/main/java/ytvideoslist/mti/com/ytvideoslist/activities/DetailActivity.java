@@ -25,11 +25,15 @@ public class DetailActivity extends ActionBarActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    Window window = this.getWindow();
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = this.getWindow();
       window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-      window.setStatusBarColor(this.getResources().getColor(R.color.teal_600));
+      window.setStatusBarColor(getResources().getColor(android.R.color.transparent));
     }
 
     setContentView(R.layout.activity_detail);
