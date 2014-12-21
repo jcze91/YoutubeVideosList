@@ -6,6 +6,12 @@
              android:background="@color/teal_400"
              tools:context="ytvideoslist.mti.com.ytvideoslist.activities.DetailActivity">
 
+  <android.support.v4.view.ViewPager
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/viewpager"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"/>
+
   <fragment
     android:id="@+id/detailFragment"
     android:layout_width="match_parent"

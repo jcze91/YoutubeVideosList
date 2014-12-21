@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   public void watchVideo(View view) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(current.getUrl()));
-    this.startActivity(intent);
+    startActivity(intent);
   }
 
   private void navigateToAbout() {
