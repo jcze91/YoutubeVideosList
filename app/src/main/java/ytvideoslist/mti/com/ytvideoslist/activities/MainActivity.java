@@ -1,12 +1,13 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,8 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
   public static Typeface ROBOTO_SLAB;
   // This is to follow Material Design guidelines even on pre-Lollipop devices
   public static Typeface ROBOTO_MEDIUM;
+
+  private Video current;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,18 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
     switch (id) {
       case R.id.action_share:
-        Log.d(TAG, "Sharing is caring");
+        if (current != null)
+          Video.shareVideo(this, current);
+        else {
+          new AlertDialog.Builder(this)
+              .setTitle(getResources().getString(R.string.shareAlertTitle))
+              .setMessage(getResources().getString(R.string.shareAlertMsg))
+              .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+              })
+              .show();
+        }
         return true;
       case R.id.action_about:
         navigateToAbout();
@@ -75,6 +89,11 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
     return super.onOptionsItemSelected(item);
   }
 
+  public void watchVideo(View view) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(current.getUrl()));
+    this.startActivity(intent);
+  }
+
   private void navigateToAbout() {
     Intent intent = new Intent(this, AboutActivity.class);
     startActivity(intent);
@@ -82,15 +101,20 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onThumbnail(int position) {
-    VideoDetailFragment fragment = (VideoDetailFragment) getFragmentManager()
+    VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
         .findFragmentById(R.id.detailFragment);
-    Video current = VideoListFragment.videoList.get(position);
+    current = VideoListFragment.videoList.get(position);
 
-    if (fragment != null && fragment.isInLayout()) {
-      //fragment.setText(current.getTitle());
+    if (detailFragment != null && detailFragment.isInLayout()) {
+      detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
+
+      detailFragment.setTitle(current.getTitle());
+      detailFragment.setImage(current.getLargeThumbnail());
+      detailFragment.setChannel(current.getChannel());
+      detailFragment.setDate(current.getPublished());
+      detailFragment.setDescription(current.getDescription());
     } else {
-      Intent intent = new Intent(getApplicationContext(),
-          DetailActivity.class);
+      Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
       intent.putExtra("video", current);
       startActivity(intent);
     }
@@ -98,15 +122,15 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onChannel(int position) {
-    StringBuilder sb = new StringBuilder();
     Video current = VideoListFragment.videoList.get(position);
-    Log.d(TAG, sb.append("Go to ").append(current.getChannel()).append("channel's").toString());
+    Intent intent = new Intent(this, ChannelActivity.class);
+    intent.putExtra("channel", current.getChannel());
+    startActivity(intent);
   }
 
   @Override
   public void onShare(int position) {
-    StringBuilder sb = new StringBuilder();
     Video current = VideoListFragment.videoList.get(position);
-    Log.d(TAG, sb.append("Sharing ").append(current.getTitle()).toString());
+    Video.shareVideo(this, current);
   }
 }

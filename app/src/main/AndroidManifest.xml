@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ytvideoslist.mti.com.ytvideoslist">
 
+  <uses-permission android:name="android.permission.INTERNET"/>
+
   <application
     android:allowBackup="true"
     android:icon="@drawable/ic_launcher"
@@ -9,7 +11,8 @@
     android:theme="@style/Theme.YTVLTheme">
     <activity
       android:name=".activities.MainActivity"
-      android:label="@string/app_name">
+      android:label="@string/app_name"
+      android:theme="@style/Theme.YTVLTheme.ActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -19,21 +22,30 @@
     <activity
       android:name=".activities.AboutActivity"
       android:label="@string/title_activity_about"
-      android:parentActivityName=".activities.MainActivity">
+      android:parentActivityName=".activities.MainActivity"
+      android:theme="@style/Theme.YTVLTheme.ActionBar">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value=".activities.MainActivity"/>
     </activity>
     <activity
       android:name=".activities.DetailActivity"
-      android:label="@string/app_name"
-      android:parentActivityName=".activities.MainActivity">
+      android:label=""
+      android:parentActivityName=".activities.MainActivity"
+      android:theme="@style/Theme.YTVLTheme.ActionBar.Transparent">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value=".activities.MainActivity"/>
     </activity>
+    <activity
+      android:name=".activities.ChannelActivity"
+      android:label="@string/title_activity_channel"
+      android:parentActivityName=".activities.MainActivity"
+      android:theme="@style/Theme.YTVLTheme.ActionBar">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="ytvideoslist.mti.com.ytvideoslist.activities.MainActivity"/>
+    </activity>
   </application>
-
-  <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

@@ -6,36 +6,45 @@
             android:scrollbars="none"
             android:paddingBottom="8dp"
             android:clipToPadding="false"
+            android:background="@android:color/background_light"
             tools:context="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment">
 
   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:background="@android:color/background_light">
+                  android:layout_height="wrap_content">
 
     <ImageView
       android:id="@+id/detailImage"
       android:layout_width="match_parent"
-      android:layout_height="180dp"
+      android:layout_height="200dp"
       android:onClick="watchVideo"
       android:scaleType="centerCrop"
       tools:src="@drawable/thumbnail_placeholder"
       android:contentDescription="@string/thmbDesc"/>
 
-    <TextView
-      android:id="@+id/detailTitle"
+    <ImageView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_margin="86dp"
+      android:src="@drawable/ic_play_arrow_white_48dp"
+      android:layout_centerHorizontal="true"
+      android:onClick="watchVideo"/>
+
+    <TextView
+      android:id="@+id/detailTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:gravity="center_vertical"
-      android:textColor="@color/grey_black_1000"
+      android:textColor="@color/grey_white_1000"
       android:text="Title"
+      android:background="@color/teal_400"
       android:layout_below="@id/detailImage"
       android:textSize="24sp"
       android:fontFamily="sans-serif-thin"
-      android:layout_marginTop="16dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginRight="16dp"
-      android:layout_marginBottom="0dp"/>
+      android:paddingTop="16dp"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingBottom="16dp"/>
 
     <TextView
       android:id="@+id/detailChannel"
@@ -69,7 +78,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:gravity="center_vertical"
-      android:text="YYYY-mm-dd hh.mm.ss"
+      android:text="YYYY/mm/dd - hh:mm"
       android:layout_below="@id/detailTitle"
       android:layout_toRightOf="@id/onDate"
       android:layout_toEndOf="@id/onDate"
@@ -100,5 +109,16 @@
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       android:layout_marginBottom="0dp"/>
+
+    <TextView
+      android:id="@+id/novideoPlaceholder"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/background_light"
+      android:text="@string/detailPlaceholder"
+      android:gravity="center"
+      android:textSize="24sp"
+      android:textColor="@color/grey_400"
+      tools:visibility="gone"/>
   </RelativeLayout>
 </ScrollView>

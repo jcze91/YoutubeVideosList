@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <style name="Theme.YTVLTheme" parent="Theme.AppCompat.Light">
-    <item name="android:windowContentOverlay">@null</item>
-  </style>
-
   <style name="Theme.YTVLTheme.ActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorPrimary">@color/teal_400</item>
     <item name="colorPrimaryDark">@color/teal_600</item>
@@ -12,14 +8,10 @@
     <item name="android:fitsSystemWindows">true</item>
   </style>
 
-  <style name="Theme.YTVLTheme.ActionBar.TitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
-    <item name="android:textColor">#ffffff</item>
-  </style>
-
   <style name="Theme.YTVLTheme.ActionBar.Transparent" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorPrimary">@android:color/transparent</item>
     <item name="windowActionBarOverlay">true</item>
     <item name="android:windowContentOverlay">@null</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
   </style>
-
 </resources>

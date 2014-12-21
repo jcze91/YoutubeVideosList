@@ -1,7 +1,11 @@
 package ytvideoslist.mti.com.ytvideoslist.models;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import ytvideoslist.mti.com.ytvideoslist.R;
 
 public class Video implements Parcelable {
   private String title;
@@ -98,4 +102,18 @@ public class Video implements Parcelable {
       return new Video[size];
     }
   };
+
+  public static void shareVideo(Context context, Video current) {
+    StringBuilder sb = new StringBuilder();
+
+    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+    sharingIntent.setType("text/plain");
+    String shareBody = sb.append(context.getResources().getString(R.string.shareMsg))
+        .append(" \"")
+        .append(current.getTitle())
+        .append("\" - ")
+        .append(current.getUrl()).toString();
+    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+    context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.shareVia)));
+  }
 }

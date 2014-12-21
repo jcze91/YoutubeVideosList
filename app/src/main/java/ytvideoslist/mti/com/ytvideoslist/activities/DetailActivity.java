@@ -18,24 +18,29 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class DetailActivity extends ActionBarActivity {
   private static final String TAG = "DetailActivity";
-  // TODO What if video is never set?
   private Video video;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    Window window = this.getWindow();
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+    }
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      Window window = this.getWindow();
       window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-      window.setStatusBarColor(this.getResources().getColor(R.color.teal_600));
+      window.setStatusBarColor(getResources().getColor(android.R.color.transparent));
     }
 
     setContentView(R.layout.activity_detail);
 
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
+      findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
+
       this.video = extras.getParcelable("video");
 
       VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
@@ -60,11 +65,10 @@ public class DetailActivity extends ActionBarActivity {
 
     switch (id) {
       case R.id.action_share:
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        String shareBody = "Hey check out this video : " + video.getUrl();
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        Video.shareVideo(this, video);
+        return true;
+      case R.id.action_about:
+        navigateToAbout();
         return true;
       default:
         break;
@@ -76,5 +80,10 @@ public class DetailActivity extends ActionBarActivity {
   public void watchVideo(View view) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getUrl()));
     this.startActivity(intent);
+  }
+
+  private void navigateToAbout() {
+    Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
   }
 }

@@ -6,18 +6,12 @@
              android:background="@color/teal_400"
              tools:context="ytvideoslist.mti.com.ytvideoslist.activities.DetailActivity">
 
-  <RelativeLayout
-    android:background="@android:color/background_light"
+  <fragment
+    android:id="@+id/detailFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <fragment
-      android:id="@+id/detailFragment"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      class="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment"
-      tools:layout="@layout/fragment_video_detail"/>
-
-  </RelativeLayout>
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    class="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment"
+    tools:layout="@layout/fragment_video_detail"/>
 
 </FrameLayout>

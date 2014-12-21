@@ -43,8 +43,10 @@ public class VideoViewHolder extends RecyclerView.ViewHolder implements View.OnC
   public void onClick(View v) {
     if (v.getId() == R.id.channelTitle) {
       listener.onChannel(getPosition());
+      return;
     } else if (v.getId() == R.id.shareAction) {
       listener.onShare(getPosition());
+      return;
     }
     listener.onThumbnail(getPosition());
   }
