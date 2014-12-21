@@ -106,17 +106,16 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
         .findFragmentById(R.id.detailFragment);
     current = VideoListFragment.videoList.get(position);
 
-    detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
+    if (detailFragment != null && detailFragment.isInLayout()) {
+      detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
 
-    if (detailFragment.isInLayout()) {
       detailFragment.setTitle(current.getTitle());
       detailFragment.setImage(current.getLargeThumbnail());
       detailFragment.setChannel(current.getChannel());
       detailFragment.setDate(current.getPublished());
       detailFragment.setDescription(current.getDescription());
     } else {
-      Intent intent = new Intent(getApplicationContext(),
-          DetailActivity.class);
+      Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
       intent.putExtra("video", current);
       startActivity(intent);
     }
