@@ -132,4 +132,10 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
     Video current = VideoListFragment.videoList.get(position);
     Video.shareVideo(this, current);
   }
+
+  public void goToChannel(View view) {
+    Intent intent = new Intent(this, ChannelActivity.class);  
+    intent.putExtra("channel", current.getChannel());
+    startActivity(intent);
+  }
 }
