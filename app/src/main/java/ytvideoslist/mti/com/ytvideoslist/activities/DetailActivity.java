@@ -43,7 +43,7 @@ public class DetailActivity extends ActionBarActivity {
 
       this.video = extras.getParcelable("video");
 
-      VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
+      VideoDetailFragment detailFragment = (VideoDetailFragment) getSupportFragmentManager()
           .findFragmentById(R.id.detailFragment);
       detailFragment.setTitle(video.getTitle());
       detailFragment.setImage(video.getLargeThumbnail());

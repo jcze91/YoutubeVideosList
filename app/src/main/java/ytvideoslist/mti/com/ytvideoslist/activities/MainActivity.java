@@ -101,7 +101,7 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onThumbnail(int position) {
-    VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
+    VideoDetailFragment detailFragment = (VideoDetailFragment) getSupportFragmentManager()
         .findFragmentById(R.id.detailFragment);
     current = VideoListFragment.videoList.get(position);
 
