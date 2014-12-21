@@ -1,6 +1,5 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -13,10 +12,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.util.List;
-
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
+import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.ViewPagerAdapter;
 
@@ -26,7 +24,6 @@ public class DetailActivity extends ActionBarActivity {
   private Video video;
   private ViewPager mViewPager;
   private ViewPagerAdapter mAdapter;
-  private List<Fragment> fraglist;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +60,13 @@ public class DetailActivity extends ActionBarActivity {
     mViewPager = (ViewPager) findViewById(R.id.viewpager);
     mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
     mViewPager.setAdapter(mAdapter);
+    mViewPager.setCurrentItem(this.getVideoIndex(this.video));
+    mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        @Override
+        public void onPageSelected(int position) {
+          video = VideoListFragment.videoList.get(mViewPager.getCurrentItem());
+        }
+    });
   }
 
   @Override
@@ -97,5 +101,14 @@ public class DetailActivity extends ActionBarActivity {
   private void navigateToAbout() {
     Intent intent = new Intent(this, AboutActivity.class);
     startActivity(intent);
+  }
+
+  private int getVideoIndex(Video video)
+  {
+      for (int i = 0; i < VideoListFragment.videoList.size(); ++i){
+        if (video.getTitle().equals(VideoListFragment.videoList.get(i).getTitle()))
+            return i;
+      }
+      return 0;
   }
 }

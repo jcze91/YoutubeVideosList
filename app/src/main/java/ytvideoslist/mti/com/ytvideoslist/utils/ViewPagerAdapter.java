@@ -3,7 +3,6 @@ package ytvideoslist.mti.com.ytvideoslist.utils;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
