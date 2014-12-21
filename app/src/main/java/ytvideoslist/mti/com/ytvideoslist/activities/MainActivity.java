@@ -1,8 +1,8 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -27,6 +27,8 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
   public static Typeface ROBOTO_SLAB;
   // This is to follow Material Design guidelines even on pre-Lollipop devices
   public static Typeface ROBOTO_MEDIUM;
+
+  private Video current;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,11 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
     return super.onOptionsItemSelected(item);
   }
 
+  public void watchVideo(View view) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(current.getUrl()));
+    this.startActivity(intent);
+  }
+
   private void navigateToAbout() {
     Intent intent = new Intent(this, AboutActivity.class);
     startActivity(intent);
@@ -82,14 +89,9 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onThumbnail(int position) {
-    int screenSize = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-
-    if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE || screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-    }
-
     VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
         .findFragmentById(R.id.detailFragment);
-    Video current = VideoListFragment.videoList.get(position);
+    current = VideoListFragment.videoList.get(position);
 
     detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
 
