@@ -72,12 +72,6 @@ public class VideoDetailFragment extends Fragment {
         break;
     }
 
-    if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL)
-      if (screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE && getActivity().getClass() != MainActivity.class) {
-        TextView placeholder = (TextView) getView().findViewById(R.id.novideoPlaceholder);
-        placeholder.setVisibility(View.GONE);
-      }
-
     super.onViewCreated(view, saveInstanceState);
     setImage(url);
     setTitle(title);
