@@ -1,8 +1,8 @@
 package ytvideoslist.mti.com.ytvideoslist.fragments;
 
-
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +12,46 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import ytvideoslist.mti.com.ytvideoslist.R;
+import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class VideoDetailFragment extends Fragment {
+
+  private String title;
+  private String channel;
+  private String date;
+  private String desc;
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_video_detail, container, false);
   }
 
-  public static Fragment newInstance (String title, String channel, String date, String desc) {
+  @Override
+  public void onCreate(Bundle saveInstanceState) {
+      super.onCreate(saveInstanceState);
+      if (getArguments() != null) {
+          Video v = getArguments().getParcelable("video");
+          title = v.getTitle();
+          channel = v.getChannel();
+          date = v.getPublished();
+          desc = v.getDescription();
+      }
+  }
+
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle saveInstanceState) {
+      super.onViewCreated(view, saveInstanceState);
+      setTitle(title);
+      setChannel(channel);
+      setDate(date);
+      setDescription(desc);
+  }
+
+  public static Fragment newInstance (Video video) {
       VideoDetailFragment vdf = new VideoDetailFragment();
-      vdf.setTitle(title);
-      vdf.setChannel(channel);
-      vdf.setDate(date);
-      vdf.setDescription(desc);
+      Bundle b = new Bundle(1);
+      b.putParcelable("video", video);
+      vdf.setArguments(b);
       return vdf;
   }
 

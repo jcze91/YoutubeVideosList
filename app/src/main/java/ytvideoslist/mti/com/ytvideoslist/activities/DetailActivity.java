@@ -21,7 +21,7 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.ViewPagerAdapter;
 
 
-public class DetailActivity extends ActionBarActivity {
+public class DetailActivity extends ActionBarActivity{
   private static final String TAG = "DetailActivity";
   private Video video;
   private ViewPager mViewPager;
@@ -51,7 +51,7 @@ public class DetailActivity extends ActionBarActivity {
 
       this.video = extras.getParcelable("video");
 
-      VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
+      VideoDetailFragment detailFragment = (VideoDetailFragment) getSupportFragmentManager()
           .findFragmentById(R.id.detailFragment);
       detailFragment.setTitle(video.getTitle());
       detailFragment.setImage(video.getLargeThumbnail());
@@ -60,9 +60,9 @@ public class DetailActivity extends ActionBarActivity {
       detailFragment.setDescription(video.getDescription());
     }
 
-    /*mViewPager = (ViewPager) findViewById(R.id.viewpager);
+    mViewPager = (ViewPager) findViewById(R.id.viewpager);
     mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-    mViewPager.setAdapter(mAdapter);*/
+    mViewPager.setAdapter(mAdapter);
   }
 
   @Override
