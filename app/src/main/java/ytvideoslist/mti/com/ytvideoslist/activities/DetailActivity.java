@@ -21,7 +21,7 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.ViewPagerAdapter;
 
 
-public class DetailActivity extends ActionBarActivity{
+public class DetailActivity extends ActionBarActivity {
   private static final String TAG = "DetailActivity";
   private Video video;
   private ViewPager mViewPager;
@@ -49,8 +49,6 @@ public class DetailActivity extends ActionBarActivity{
 
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
-      findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
-
       this.video = extras.getParcelable("video");
 
       VideoDetailFragment detailFragment = (VideoDetailFragment) getSupportFragmentManager()

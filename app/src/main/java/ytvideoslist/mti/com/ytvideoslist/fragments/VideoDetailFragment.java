@@ -16,6 +16,7 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class VideoDetailFragment extends Fragment {
 
+  private String url;
   private String title;
   private String channel;
   private String date;
@@ -28,35 +29,38 @@ public class VideoDetailFragment extends Fragment {
 
   @Override
   public void onCreate(Bundle saveInstanceState) {
-      super.onCreate(saveInstanceState);
-      if (getArguments() != null) {
-          Video v = getArguments().getParcelable("video");
-          title = v.getTitle();
-          channel = v.getChannel();
-          date = v.getPublished();
-          desc = v.getDescription();
-      }
+    super.onCreate(saveInstanceState);
+    if (getArguments() != null) {
+      Video v = getArguments().getParcelable("video");
+      url = v.getLargeThumbnail();
+      title = v.getTitle();
+      channel = v.getChannel();
+      date = v.getPublished();
+      desc = v.getDescription();
+    }
   }
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle saveInstanceState) {
-      super.onViewCreated(view, saveInstanceState);
-      setTitle(title);
-      setChannel(channel);
-      setDate(date);
-      setDescription(desc);
+    super.onViewCreated(view, saveInstanceState);
+    setImage(url);
+    setTitle(title);
+    setChannel(channel);
+    setDate(date);
+    setDescription(desc);
   }
 
-  public static Fragment newInstance (Video video) {
-      VideoDetailFragment vdf = new VideoDetailFragment();
-      Bundle b = new Bundle(1);
-      b.putParcelable("video", video);
-      vdf.setArguments(b);
-      return vdf;
+  public static Fragment newInstance(Video video) {
+    VideoDetailFragment vdf = new VideoDetailFragment();
+
+    Bundle b = new Bundle(1);
+    b.putParcelable("video", video);
+    vdf.setArguments(b);
+    return vdf;
   }
 
   public void setImage(String url) {
-    ImageView img = (ImageView) getActivity().findViewById(R.id.detailImage);
+    ImageView img = (ImageView) getView().findViewById(R.id.detailImage);
     Picasso.with(getActivity()).load(url)
         .placeholder(R.drawable.thumbnail_placeholder)
         .error(R.drawable.thumbnail_placeholder)

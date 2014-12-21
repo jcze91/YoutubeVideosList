@@ -17,9 +17,6 @@ import java.util.Locale;
 
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
-/**
- * Created by Yayap on 19/12/14.
- */
 public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
 
   private String urlString;
@@ -69,7 +66,7 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
         Date published = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date);
 
         Video video = new
-                Video(title,
+            Video(title,
             channel,
             description,
             new SimpleDateFormat("yyyy/MM/dd - hh:mm").format(published),

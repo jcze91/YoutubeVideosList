@@ -7,17 +7,18 @@
              tools:context="ytvideoslist.mti.com.ytvideoslist.activities.DetailActivity">
 
   <android.support.v4.view.ViewPager
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/viewpager"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"/>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewpager"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-  <fragment
-    android:id="@+id/detailFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    class="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment"
-    tools:layout="@layout/fragment_video_detail"/>
+    <fragment
+      android:id="@+id/detailFragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fitsSystemWindows="true"
+      class="ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment"
+      tools:layout="@layout/fragment_video_detail"/>
+  </android.support.v4.view.ViewPager>
 
 </FrameLayout>
