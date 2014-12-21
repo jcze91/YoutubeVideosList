@@ -12,5 +12,8 @@
   <string name="thmbDesc">Video Thumbnail</string>
   <string name="shareVia">Share this video via</string>
   <string name="shareMsg">Check out</string>
+  <string name="shareAlertTitle">Hold on!</string>
+  <string name="shareAlertMsg">You\'re very generous, but you should first select a video to share. :) </string>
+  <string name="detailPlaceholder">No video selected.</string>
 
 </resources>

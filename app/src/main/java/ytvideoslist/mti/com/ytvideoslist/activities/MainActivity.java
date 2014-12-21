@@ -1,5 +1,7 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -65,7 +67,18 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
     switch (id) {
       case R.id.action_share:
-        Log.d(TAG, "Sharing is caring");
+        if (current != null)
+          Video.shareVideo(this, current);
+        else {
+          new AlertDialog.Builder(this)
+              .setTitle(getResources().getString(R.string.shareAlertTitle))
+              .setMessage(getResources().getString(R.string.shareAlertMsg))
+              .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                }
+              })
+              .show();
+        }
         return true;
       case R.id.action_about:
         navigateToAbout();
@@ -95,7 +108,7 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
     detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
 
-    if (detailFragment != null && detailFragment.isInLayout()) {
+    if (detailFragment.isInLayout()) {
       detailFragment.setTitle(current.getTitle());
       detailFragment.setImage(current.getLargeThumbnail());
       detailFragment.setChannel(current.getChannel());

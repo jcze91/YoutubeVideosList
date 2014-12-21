@@ -115,7 +115,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@android:color/background_light"
-      android:text="No video selected."
+      android:text="@string/detailPlaceholder"
       android:gravity="center"
       android:textSize="24sp"
       android:textColor="@color/grey_400"

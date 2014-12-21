@@ -11,5 +11,8 @@
   <string name="thmbDesc">Miniature de la vidéo</string>
   <string name="shareVia">Partager cette vidéo via</string>
   <string name="shareMsg">Regardez</string>
+  <string name="shareAlertTitle">Une petite minute !</string>
+  <string name="shareAlertMsg">C\'est généreux de votre part, mais vous devez d\'abord sélectionner une vidéo. :) </string>
+  <string name="detailPlaceholder">Aucune vidéo sélectionnée.</string>
 
 </resources>
