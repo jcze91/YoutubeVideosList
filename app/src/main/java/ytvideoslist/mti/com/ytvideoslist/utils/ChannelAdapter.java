@@ -35,7 +35,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelViewHolder> {
   @Override
   public void onBindViewHolder(ChannelViewHolder holder, int position) {
     Video vid = videoList.get(position);
-    Picasso.with(ctx).load(vid.getMediumThumbnail())
+    Picasso.with(ctx).load(vid.getLargeThumbnail())
         .placeholder(R.drawable.thumbnail_placeholder)
         .error(R.drawable.thumbnail_placeholder)
         .into(holder.thumbnail);

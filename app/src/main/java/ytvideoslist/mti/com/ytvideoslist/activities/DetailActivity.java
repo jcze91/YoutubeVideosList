@@ -32,6 +32,8 @@ public class DetailActivity extends ActionBarActivity{
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     Window window = this.getWindow();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
