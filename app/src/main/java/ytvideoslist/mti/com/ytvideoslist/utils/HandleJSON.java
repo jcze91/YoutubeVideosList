@@ -68,7 +68,8 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
 
         Date published = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH).parse(date);
 
-        Video video = new Video(title,
+        Video video = new
+                Video(title,
             channel,
             description,
             new SimpleDateFormat("yyyy/MM/dd - hh:mm").format(published),
