@@ -21,6 +21,7 @@
     <activity
       android:name=".activities.AboutActivity"
       android:label="@string/title_activity_about"
+      android:theme="@style/Theme.YTVLTheme.ActionBar"
       android:parentActivityName=".activities.MainActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
