@@ -14,5 +14,6 @@
   <string name="shareAlertTitle">Une petite minute !</string>
   <string name="shareAlertMsg">C\'est généreux de votre part, mais vous devez d\'abord sélectionner une vidéo. :) </string>
   <string name="detailPlaceholder">Aucune vidéo sélectionnée.</string>
+  <string name="title_activity_channel">Détails de la chaine</string>
 
 </resources>

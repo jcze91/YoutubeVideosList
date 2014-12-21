@@ -67,6 +67,9 @@ public class DetailActivity extends ActionBarActivity {
       case R.id.action_share:
         Video.shareVideo(this, video);
         return true;
+      case R.id.action_about:
+        navigateToAbout();
+        return true;
       default:
         break;
     }
@@ -77,5 +80,10 @@ public class DetailActivity extends ActionBarActivity {
   public void watchVideo(View view) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getUrl()));
     this.startActivity(intent);
+  }
+
+  private void navigateToAbout() {
+    Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
   }
 }

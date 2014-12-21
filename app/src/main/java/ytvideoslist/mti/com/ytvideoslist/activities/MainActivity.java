@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -123,15 +122,15 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onChannel(int position) {
-    StringBuilder sb = new StringBuilder();
     Video current = VideoListFragment.videoList.get(position);
-    Log.d(TAG, sb.append("Go to ").append(current.getChannel()).append("channel's").toString());
+    Intent intent = new Intent(this, ChannelActivity.class);
+    intent.putExtra("channel", current.getChannel());
+    startActivity(intent);
   }
 
   @Override
   public void onShare(int position) {
     Video current = VideoListFragment.videoList.get(position);
-
     Video.shareVideo(this, current);
   }
 }

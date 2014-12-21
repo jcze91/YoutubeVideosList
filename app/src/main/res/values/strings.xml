@@ -15,5 +15,6 @@
   <string name="shareAlertTitle">Hold on!</string>
   <string name="shareAlertMsg">You\'re very generous, but you should first select a video to share. :) </string>
   <string name="detailPlaceholder">No video selected.</string>
+  <string name="title_activity_channel">Channel details</string>
 
 </resources>
