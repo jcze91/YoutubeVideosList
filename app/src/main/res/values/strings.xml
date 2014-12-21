@@ -10,5 +10,7 @@
   <string name="description">Description</string>
   <string name="onDate">on</string>
   <string name="thmbDesc">Video Thumbnail</string>
+  <string name="shareVia">Share this video via</string>
+  <string name="shareMsg">Check out</string>
 
 </resources>

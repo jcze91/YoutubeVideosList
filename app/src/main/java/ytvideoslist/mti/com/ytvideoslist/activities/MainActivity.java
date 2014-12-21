@@ -103,8 +103,8 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onShare(int position) {
-    StringBuilder sb = new StringBuilder();
     Video current = VideoListFragment.videoList.get(position);
-    Log.d(TAG, sb.append("Sharing ").append(current.getTitle()).toString());
+
+    Video.shareVideo(this, current);
   }
 }

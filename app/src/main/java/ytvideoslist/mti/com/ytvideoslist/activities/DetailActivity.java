@@ -18,7 +18,6 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class DetailActivity extends ActionBarActivity {
   private static final String TAG = "DetailActivity";
-  // TODO What if video is never set?
   private Video video;
 
   @Override
@@ -64,11 +63,7 @@ public class DetailActivity extends ActionBarActivity {
 
     switch (id) {
       case R.id.action_share:
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        String shareBody = "Hey check out this video : " + video.getUrl();
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        Video.shareVideo(this, video);
         return true;
       default:
         break;
