@@ -2,10 +2,12 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/teal_400"
                 tools:context="ytvideoslist.mti.com.ytvideoslist.activities.ChannelActivity">
 
   <android.support.v7.widget.RecyclerView
     android:id="@+id/videoList"
+    android:background="@color/grey_200"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:visibility="gone"
