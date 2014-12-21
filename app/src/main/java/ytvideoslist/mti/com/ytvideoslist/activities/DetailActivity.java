@@ -46,6 +46,8 @@ public class DetailActivity extends ActionBarActivity {
 
     Bundle extras = getIntent().getExtras();
     if (extras != null) {
+      findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
+
       this.video = extras.getParcelable("video");
 
       VideoDetailFragment detailFragment = (VideoDetailFragment) getSupportFragmentManager()

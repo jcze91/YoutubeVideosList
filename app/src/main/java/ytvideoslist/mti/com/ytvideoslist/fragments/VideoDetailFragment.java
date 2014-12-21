@@ -1,5 +1,6 @@
 package ytvideoslist.mti.com.ytvideoslist.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import ytvideoslist.mti.com.ytvideoslist.R;
+import ytvideoslist.mti.com.ytvideoslist.activities.MainActivity;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
 public class VideoDetailFragment extends Fragment {
@@ -24,7 +26,8 @@ public class VideoDetailFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_video_detail, container, false);
+    View view = inflater.inflate(R.layout.fragment_video_detail, container, false);
+    return view;
   }
 
   @Override
@@ -40,8 +43,41 @@ public class VideoDetailFragment extends Fragment {
     }
   }
 
+  private void hidePlaceholder() {
+    TextView placeholder = (TextView) getView().findViewById(R.id.novideoPlaceholder);
+    placeholder.setVisibility(View.GONE);
+  }
+
   @Override
   public void onViewCreated(View view, @Nullable Bundle saveInstanceState) {
+    int screenSize = getResources().getConfiguration().screenLayout &
+        Configuration.SCREENLAYOUT_SIZE_MASK;
+
+    switch (screenSize) {
+      case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+        if (getActivity().getClass() != MainActivity.class) {
+          hidePlaceholder();
+        }
+        break;
+      case Configuration.SCREENLAYOUT_SIZE_LARGE:
+        if (getActivity().getClass() != MainActivity.class) {
+          hidePlaceholder();
+        }
+        break;
+      case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+        hidePlaceholder();
+      case Configuration.SCREENLAYOUT_SIZE_SMALL:
+        hidePlaceholder();
+      default:
+        break;
+    }
+
+    if (screenSize == Configuration.SCREENLAYOUT_SIZE_NORMAL)
+      if (screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE && getActivity().getClass() != MainActivity.class) {
+        TextView placeholder = (TextView) getView().findViewById(R.id.novideoPlaceholder);
+        placeholder.setVisibility(View.GONE);
+      }
+
     super.onViewCreated(view, saveInstanceState);
     setImage(url);
     setTitle(title);
