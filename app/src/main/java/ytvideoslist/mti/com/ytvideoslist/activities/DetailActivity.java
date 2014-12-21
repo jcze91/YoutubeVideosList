@@ -91,6 +91,12 @@ public class DetailActivity extends ActionBarActivity {
     return super.onOptionsItemSelected(item);
   }
 
+  public void goToChannel(View view) {
+    Intent intent = new Intent(this, ChannelActivity.class);
+    intent.putExtra("channel", video.getChannel());
+    startActivity(intent);
+  }
+
   public void watchVideo(View view) {
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getUrl()));
     this.startActivity(intent);
