@@ -109,5 +109,16 @@
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       android:layout_marginBottom="0dp"/>
+
+    <TextView
+      android:id="@+id/novideoPlaceholder"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/background_light"
+      android:text="No video selected."
+      android:gravity="center"
+      android:textSize="24sp"
+      android:textColor="@color/grey_400"
+      tools:visibility="gone"/>
   </RelativeLayout>
 </ScrollView>

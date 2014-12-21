@@ -1,6 +1,7 @@
 package ytvideoslist.mti.com.ytvideoslist.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -80,12 +82,23 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
 
   @Override
   public void onThumbnail(int position) {
-    VideoDetailFragment fragment = (VideoDetailFragment) getFragmentManager()
+    int screenSize = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+
+    if (screenSize == Configuration.SCREENLAYOUT_SIZE_LARGE || screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+    }
+
+    VideoDetailFragment detailFragment = (VideoDetailFragment) getFragmentManager()
         .findFragmentById(R.id.detailFragment);
     Video current = VideoListFragment.videoList.get(position);
 
-    if (fragment != null && fragment.isInLayout()) {
-      //fragment.setText(current.getTitle());
+    detailFragment.getActivity().findViewById(R.id.novideoPlaceholder).setVisibility(View.GONE);
+
+    if (detailFragment != null && detailFragment.isInLayout()) {
+      detailFragment.setTitle(current.getTitle());
+      detailFragment.setImage(current.getLargeThumbnail());
+      detailFragment.setChannel(current.getChannel());
+      detailFragment.setDate(current.getPublished());
+      detailFragment.setDescription(current.getDescription());
     } else {
       Intent intent = new Intent(getApplicationContext(),
           DetailActivity.class);
