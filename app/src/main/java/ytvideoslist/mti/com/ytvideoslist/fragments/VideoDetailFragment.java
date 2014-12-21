@@ -1,5 +1,6 @@
 package ytvideoslist.mti.com.ytvideoslist.fragments;
 
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,15 @@ public class VideoDetailFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_video_detail, container, false);
+  }
+
+  public static Fragment newInstance (String title, String channel, String date, String desc) {
+      VideoDetailFragment vdf = new VideoDetailFragment();
+      vdf.setTitle(title);
+      vdf.setChannel(channel);
+      vdf.setDate(date);
+      vdf.setDescription(desc);
+      return vdf;
   }
 
   public void setImage(String url) {
