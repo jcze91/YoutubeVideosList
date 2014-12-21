@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoListFragment;
@@ -24,6 +26,7 @@ public class DetailActivity extends ActionBarActivity {
   private Video video;
   private ViewPager mViewPager;
   private ViewPagerAdapter mAdapter;
+  public static ArrayList<Video> videoList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +63,20 @@ public class DetailActivity extends ActionBarActivity {
     }
 
     mViewPager = (ViewPager) findViewById(R.id.viewpager);
-    mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+    if (extras != null && extras.getString("source").equals(ChannelActivity.class.getCanonicalName())) {
+      DetailActivity.videoList = ChannelActivity.videoList;
+    } else
+      DetailActivity.videoList = VideoListFragment.videoList;
+
+    mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), DetailActivity.videoList);
     mViewPager.setAdapter(mAdapter);
     mViewPager.setCurrentItem(this.getVideoIndex(this.video));
     mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-        @Override
-        public void onPageSelected(int position) {
-          video = VideoListFragment.videoList.get(mViewPager.getCurrentItem());
-        }
+      @Override
+      public void onPageSelected(int position) {
+        video = DetailActivity.videoList.get(mViewPager.getCurrentItem());
+      }
     });
   }
 
@@ -111,12 +120,11 @@ public class DetailActivity extends ActionBarActivity {
     startActivity(intent);
   }
 
-  private int getVideoIndex(Video video)
-  {
-      for (int i = 0; i < VideoListFragment.videoList.size(); ++i){
-        if (video.getTitle().equals(VideoListFragment.videoList.get(i).getTitle()))
-            return i;
-      }
-      return 0;
+  private int getVideoIndex(Video video) {
+    for (int i = 0; i < DetailActivity.videoList.size(); ++i) {
+      if (video.getTitle().equals(DetailActivity.videoList.get(i).getTitle()))
+        return i;
+    }
+    return 0;
   }
 }

@@ -116,6 +116,7 @@ public class MainActivity extends ActionBarActivity implements VideoViewHolder.I
     } else {
       Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
       intent.putExtra("video", current);
+      intent.putExtra("source", getClass().getCanonicalName());
       startActivity(intent);
     }
   }

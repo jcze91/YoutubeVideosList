@@ -20,7 +20,7 @@ import ytvideoslist.mti.com.ytvideoslist.utils.ChannelAdapter;
 import ytvideoslist.mti.com.ytvideoslist.utils.ChannelViewHolder;
 
 public class ChannelActivity extends ActionBarActivity implements ChannelViewHolder.IChannelViewHolderClicks {
-  private ArrayList<Video> videoList;
+  public static ArrayList<Video> videoList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,7 @@ public class ChannelActivity extends ActionBarActivity implements ChannelViewHol
 
     Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
     intent.putExtra("video", current);
+    intent.putExtra("source", getClass().getCanonicalName());
     startActivity(intent);
   }
 }
