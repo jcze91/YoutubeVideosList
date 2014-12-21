@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import ytvideoslist.mti.com.ytvideoslist.fragments.VideoDetailFragment;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
+
 public class ViewPagerAdapter extends FragmentPagerAdapter {
   ArrayList<Video> videoList;
 

@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 import ytvideoslist.mti.com.ytvideoslist.R;
 
+
 public class Video implements Parcelable {
   private String title;
   private String channel;

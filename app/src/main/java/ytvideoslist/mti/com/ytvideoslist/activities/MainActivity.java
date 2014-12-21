@@ -23,8 +23,6 @@ import ytvideoslist.mti.com.ytvideoslist.utils.VideoViewHolder;
 
 public class MainActivity extends ActionBarActivity implements VideoViewHolder.IVideoViewHolderClicks {
 
-  // TODO Remove possible useless debug logs prior to submission
-  private static final String TAG = "MainActivity";
   public static Typeface ROBOTO_SLAB;
   // This is to follow Material Design guidelines even on pre-Lollipop devices
   public static Typeface ROBOTO_MEDIUM;

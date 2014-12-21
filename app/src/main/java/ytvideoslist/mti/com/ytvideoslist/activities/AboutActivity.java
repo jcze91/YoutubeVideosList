@@ -29,7 +29,6 @@ public class AboutActivity extends ActionBarActivity {
     setContentView(R.layout.activity_about);
   }
 
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu_about, menu);

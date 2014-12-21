@@ -22,7 +22,6 @@ import ytvideoslist.mti.com.ytvideoslist.utils.ViewPagerAdapter;
 
 
 public class DetailActivity extends ActionBarActivity {
-  private static final String TAG = "DetailActivity";
   private Video video;
   private ViewPager mViewPager;
   private ViewPagerAdapter mAdapter;

@@ -12,14 +12,16 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import ytvideoslist.mti.com.ytvideoslist.utils.HandleJSON;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.CardAdapter;
+import ytvideoslist.mti.com.ytvideoslist.utils.HandleJSON;
 import ytvideoslist.mti.com.ytvideoslist.utils.VideoViewHolder;
+
 
 public class VideoListFragment extends Fragment {
 
+  private final String API_URL = "http://tutos-android.com/projet/youtube_api_search.json";
   public static ArrayList<Video> videoList;
 
   public VideoListFragment() {
@@ -39,7 +41,7 @@ public class VideoListFragment extends Fragment {
     videoList = new ArrayList<>();
 
     try {
-      HandleJSON hj = new HandleJSON("http://tutos-android.com/projet/youtube_api_search.json");
+      HandleJSON hj = new HandleJSON(API_URL);
       hj.execute();
       videoList = hj.get();
     } catch (Exception e) {

@@ -19,6 +19,7 @@ import ytvideoslist.mti.com.ytvideoslist.models.Video;
 import ytvideoslist.mti.com.ytvideoslist.utils.ChannelAdapter;
 import ytvideoslist.mti.com.ytvideoslist.utils.ChannelViewHolder;
 
+
 public class ChannelActivity extends ActionBarActivity implements ChannelViewHolder.IChannelViewHolderClicks {
   public static ArrayList<Video> videoList;
 
@@ -53,11 +54,10 @@ public class ChannelActivity extends ActionBarActivity implements ChannelViewHol
       llm.setOrientation(LinearLayoutManager.VERTICAL);
       recList.setLayoutManager(llm);
 
-      ChannelAdapter ca = new ChannelAdapter(this, videoList);
+      ChannelAdapter ca = new ChannelAdapter(videoList);
       recList.setAdapter(ca);
     }
   }
-
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

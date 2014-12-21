@@ -79,7 +79,6 @@ public class HandleJSON extends AsyncTask<Void, Void, ArrayList<Video>> {
       }
 
     } catch (Exception e) {
-      // TODO Properly handle this
       e.printStackTrace();
     }
     return videoList;

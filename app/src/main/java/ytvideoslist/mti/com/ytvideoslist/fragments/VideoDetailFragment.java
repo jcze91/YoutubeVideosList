@@ -16,6 +16,7 @@ import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.activities.MainActivity;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
+
 public class VideoDetailFragment extends Fragment {
 
   private String url;

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
+
 public class CardAdapter extends RecyclerView.Adapter<VideoViewHolder> {
   private ArrayList<Video> videoList;
   private Context ctx;

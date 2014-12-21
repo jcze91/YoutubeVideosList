@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.models.Video;
 
+
 public class ChannelAdapter extends RecyclerView.Adapter<ChannelViewHolder> {
   private ArrayList<Video> videoList;
   private Context ctx;
 
-  public ChannelAdapter(Context ctx, ArrayList<Video> videoList) {
+  public ChannelAdapter(ArrayList<Video> videoList) {
     this.videoList = videoList;
   }
 

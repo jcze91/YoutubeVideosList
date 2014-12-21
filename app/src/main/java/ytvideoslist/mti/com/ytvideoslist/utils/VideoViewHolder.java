@@ -8,6 +8,7 @@ import android.widget.TextView;
 import ytvideoslist.mti.com.ytvideoslist.R;
 import ytvideoslist.mti.com.ytvideoslist.activities.MainActivity;
 
+
 public class VideoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
   protected ImageView thumbnail;
   protected TextView title;
@@ -20,6 +21,8 @@ public class VideoViewHolder extends RecyclerView.ViewHolder implements View.OnC
     super(itemView);
 
     this.listener = listener;
+
+    itemView.setOnClickListener(this);
 
     thumbnail = (ImageView) itemView.findViewById(R.id.videoThumbnail);
     thumbnail.setOnClickListener(this);
